@@ -1,0 +1,24 @@
+<h1>New GL Account</h1>
+
+<%= form_with model: @gl_account do |form| %>
+  <div>
+    <%= form.label "Name:" %><br>
+    <%= form.text_field :name %>
+  </div>
+    <br>
+  <div>
+    <%= form.label "Number" %><br>
+    <%= form.text_field :number %>
+  </div>
+    <br>
+  <div>
+    <%= form.label "Type:" %><br>
+    <%= form.text_field :gl_type %>
+  </div>
+    <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<br>
+<%= button_to "Cancel", gl_accounts_path, :method => "get" %>

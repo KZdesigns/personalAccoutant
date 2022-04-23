@@ -1,0 +1,2 @@
+class GlAccount < ApplicationRecord
+end

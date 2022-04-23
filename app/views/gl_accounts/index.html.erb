@@ -1,0 +1,14 @@
+<h1>GL Accounts</h1>
+
+<ul>
+  <% @gl_accounts.each do |account| %>
+    <li>
+      <%= account.number %>: <%= account.name %> <%= account.gl_type %>
+    </li>
+  <% end %>
+</ul>
+
+<%= button_to "Create new account", new_gl_account_path, :method => "get" %>
+<br>
+<%= button_to "Back to Home", root_path, :method => "get" %>
+
