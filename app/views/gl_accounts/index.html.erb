@@ -1,9 +1,10 @@
 <h1>GL Accounts</h1>
 
 <ul>
+<%# change do block param to gl_account %>
   <% @gl_accounts.each do |account| %>
     <li>
-      <%= account.number %>: <%= account.name %> <%= account.gl_type %>
+      <%= account.number %>: <%= account.name %> <%= account.gl_type %> <%= link_to "Edit/Delete", account %>
     </li>
   <% end %>
 </ul>
