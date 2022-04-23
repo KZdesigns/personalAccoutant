@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_23_055007) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_23_084911) do
   create_table "gl_accounts", force: :cascade do |t|
     t.integer "number"
     t.string "name"
@@ -19,4 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_23_055007) do
     t.string "gl_type"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.date "date"
+    t.integer "amount"
+    t.string "notes"
+    t.text "description"
+    t.integer "gl_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gl_account_id"], name: "index_transactions_on_gl_account_id"
+  end
+
+  add_foreign_key "transactions", "gl_accounts"
 end

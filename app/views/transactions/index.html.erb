@@ -1,0 +1,9 @@
+<h1>Transactions</h1>
+
+<ul>
+  <% @transactions.each do |transaction| %>
+    <li>
+        <%= transaction.name %>
+    </li>
+  <% end %>
+</ul>

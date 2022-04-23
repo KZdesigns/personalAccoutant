@@ -2,16 +2,25 @@
 
 <%= form_with model: @gl_account do |form| %>
   <div>
+    <% @gl_account.errors.full_messages_for(:name).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
     <%= form.label "Name:" %><br>
     <%= form.text_field :name %>
   </div>
     <br>
   <div>
+   <% @gl_account.errors.full_messages_for(:number).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
     <%= form.label "Number" %><br>
     <%= form.text_field :number %>
   </div>
     <br>
   <div>
+   <% @gl_account.errors.full_messages_for(:gl_type).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
     <%= form.label "Type:" %><br>
     <%= form.text_field :gl_type %>
   </div>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2022-04-23
+  amount: 1
+  notes: MyString
+  description: MyText
+  gl_account: one
+
+two:
+  date: 2022-04-23
+  amount: 1
+  notes: MyString
+  description: MyText
+  gl_account: two
