@@ -3,9 +3,16 @@
 <ul>
   <% @transactions.each do |transaction| %>
     <li>
-        <%= transaction.name %>
+        <h3>Transaction Number: <%= transaction.id%> <%= link_to "Edit/Delete", transaction%></h3>
+        <p>Date: <%= transaction.date %></p>
+        <p>Amount: $<%= transaction.amount %></p>
+        <p>Descriotion: <%= transaction.description %></p>
+        <p>Notes: <%= transaction.notes %></p>
+        <%= render transaction.gl_account%></p>
+        
     </li>
   <% end %>
 </ul>
-
-<%= button_to "Back to Home", root_path, :method => "get" %>
+<br>
+<p><%= button_to "Create new transaction", new_transaction_path, :method => "get"%></p>
+<p><%= button_to "Back to Home", root_path, :method => "get" %></p>

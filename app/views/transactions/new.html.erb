@@ -1,0 +1,34 @@
+<h1>New Transaction</h1>
+    <%= form_with model: @transaction do |form| %>
+        <div>
+            <%= form.label "Date:" %><br>
+            <%= form.date_select :date, start_year: 2020, end_year: Time.now.year %>
+        </div>
+        <br>
+        <div>
+            <%= form.label "Amount:"%><br>
+            <%= form.number_field :amount, step: :any%>
+        </div>
+        <br>
+        <div>
+            <%= form.label "Description:"%><br>
+            <%= form.text_area :description%>
+        </div>
+        <br>
+        <div>
+            <%= form.label "Notes:"%><br>
+            <%= form.select :notes, options_for_select([ "", "Need to request", "Requested", "Paid" ], "") %>
+        </div>
+        <br>
+        <div>
+            <%= form.label "GL Account:"%><br>
+             <%= form.collection_select(:gl_account_id, GlAccount.all, :id, :name) %>
+        </div>
+        <br>
+        <div>
+            <%= form.submit %>
+        </div>
+    <% end %>
+
+    <p><%= button_to "Cancel", transactions_path, :method => "get"%></p>
+
