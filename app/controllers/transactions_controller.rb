@@ -39,7 +39,12 @@ class TransactionsController < ApplicationController
         @transaction.destroy
     
         redirect_to transactions_path, status: :see_other
-      end
+    end
+
+    def import
+        Transaction.import(params[:file])
+        redirect_to transactions_path, notice: "Products imported."
+    end
 
     private 
     def transaction_params

@@ -33,7 +33,7 @@ class GlAccountsController < ApplicationController
 
     def destroy
         @gl_account = GlAccount.find(params[:id])
-        @gl_account.destroy
+        @gl_account.destroy unless @gl_account.id == 1
     
         redirect_to gl_accounts_path, status: :see_other
       end
