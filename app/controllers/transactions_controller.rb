@@ -41,6 +41,12 @@ class TransactionsController < ApplicationController
         redirect_to transactions_path, status: :see_other
     end
 
+    def delete_all
+        @transactions = Transaction.all
+        @transactions.destroy_all
+        redirect_to transactions_path, status: :see_other
+    end
+
     def import
         Transaction.import(params[:file])
         redirect_to transactions_path, notice: "transactions imported."

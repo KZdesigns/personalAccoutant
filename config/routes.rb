@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :transactions do 
     collection { post :import }
     collection { get :income }
-    collection {get :expense }
+    collection { get :expense }
+    collection { delete :delete_all }
   end
 
 end
