@@ -62,6 +62,13 @@ class TransactionsController < ApplicationController
         @amount = Transaction.expenseTotal(@transactions)
     end
 
+    def income_statement
+        @transactions = Transaction.all
+        @incomeTotal = Transaction.incomeTotal(@transactions)
+        @expenseTotal = Transaction.expenseTotal(@transactions)
+        @netIncome = @incomeTotal - @expenseTotal
+    end
+
     private 
     def transaction_params
         params.require(:transaction).permit(:date, :amount, :description, :notes, :gl_account_id)

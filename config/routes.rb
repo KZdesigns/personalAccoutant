@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/gl_accounts", to: "gl_accounts#index"
   get "/transactions", to: "transactions#index"
 
+
   resources :gl_accounts
 
   resources :transactions do 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     collection { get :income }
     collection { get :expense }
     collection { delete :delete_all }
+    collection { get :income_statement }
   end
 
 end
