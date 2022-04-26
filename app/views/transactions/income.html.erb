@@ -1,0 +1,8 @@
+<h1>Income Transactions</h1>
+
+<% @transactions.each do |transaction|%>
+    <% if transaction.gl_account.gl_type == "income" %>
+        <p> Transaction Number: <%= transaction.id %></p>
+        <p> Amount: <%= transaction.amount %></p>
+    <% end %>
+<% end %>

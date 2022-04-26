@@ -43,7 +43,11 @@ class TransactionsController < ApplicationController
 
     def import
         Transaction.import(params[:file])
-        redirect_to transactions_path, notice: "Products imported."
+        redirect_to transactions_path, notice: "transactions imported."
+    end
+
+    def income
+        @transactions = Transaction.all
     end
 
     private 
