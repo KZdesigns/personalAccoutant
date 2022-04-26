@@ -19,6 +19,13 @@ import bank statements, catagorize transactions, and see an income statement.
 - Import a CSV with Transactions
 - Generate an income statement
 
+### Future Improvement:
+
+- Inline updating for transactions
+- Updating UI to have more styles
+- Adding a filters for transaction dates
+- Export transaction data
+
 ## Tech Used
 
 - Ruby 2.7
