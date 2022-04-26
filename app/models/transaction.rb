@@ -20,4 +20,15 @@ class Transaction < ApplicationRecord
 
     return totalIncome
   end
+
+  def self.expenseTotal(transactions)
+    totalExpense = 0
+    transactions.each do |transaction|
+      if transaction.gl_account.gl_type == "expense"
+        totalExpense += transaction.amount
+      end
+    end
+
+    return totalExpense
+  end
 end

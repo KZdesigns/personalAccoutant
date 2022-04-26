@@ -1,0 +1,20 @@
+<h1>Expense Transactions</h1>
+<table>
+    <tr>
+        <th style="padding-left: 50px; padding-right: 50px;">Transaction Number</th>
+        <th>Amount</th>
+    </tr>
+    <% @transactions.each do |transaction|%>
+        <% if transaction.gl_account.gl_type == "expense" %>
+            <tr>
+                <td style="padding-left: 50px; padding-right: 50px;"> Transaction Number: <%= transaction.id %></td>
+                <td> Amount: <%= transaction.amount %></td>
+            </tr>
+        <% end %>
+    <% end %>
+    <tr>
+        <td style="padding: 20px 0px 20px 50px">Total Amount: <%= @amount %></td>
+    </tr>
+</table>
+
+<%= button_to "Back To Transaction", transactions_path, :method => "get" %>
