@@ -10,6 +10,15 @@ Personal Accountant brings a little vinilla back into the mix allowing users to 
 import bank statements, catagorize transactions, and see an income statement.
 ```
 
+## MVP Complete
+
+### Features:
+
+- GL Accounts (CRUD)
+- Transactions (CRUD)
+- Import a CSV with Transactions
+- Generate an income statement
+
 ## Tech Used
 
 - Ruby 2.7
