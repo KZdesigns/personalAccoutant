@@ -48,6 +48,7 @@ class TransactionsController < ApplicationController
 
     def income
         @transactions = Transaction.all
+        @amount = Transaction.incomeTotal(@transactions)
     end
 
     private 
