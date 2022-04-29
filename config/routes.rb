@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/gl_accounts", to: "gl_accounts#index"
   get "/transactions", to: "transactions#index"
   get 'transactions/export', to: 'transactions#export'
+ 
 
   resources :gl_accounts
   
