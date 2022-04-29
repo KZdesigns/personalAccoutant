@@ -18,13 +18,13 @@ import bank statements, catagorize transactions, and see an income statement.
 - Transactions (CRUD)
 - Import a CSV with Transactions
 - Generate an income statement
+- Export transaction data
 
 ### Future Improvement:
 
 - Inline updating for transactions
 - Updating UI to have more styles
 - Adding a filters for transaction dates
-- Export transaction data
 
 ## Tech Used
 
