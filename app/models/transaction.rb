@@ -25,6 +25,16 @@ class Transaction < ApplicationRecord
   #   end
   # end
 
+  def self.generateBalance(gl_account, transactions)
+    amount = 0
+    transactions.each do |transaction|
+      if gl_account.id == transaction.gl_account_id
+        amount += transaction.amount
+      end
+    end
+    return amount
+  end
+
   def self.incomeTotal(transactions)
     totalIncome = 0
     transactions.each do |transaction|
@@ -46,4 +56,5 @@ class Transaction < ApplicationRecord
 
     return totalExpense
   end
+
 end

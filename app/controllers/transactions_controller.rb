@@ -1,4 +1,5 @@
 require 'csv'
+require 'gl_account'
 
 class TransactionsController < ApplicationController
     def index
@@ -85,6 +86,16 @@ class TransactionsController < ApplicationController
         @incomeTotal = Transaction.incomeTotal(@transactions)
         @expenseTotal = Transaction.expenseTotal(@transactions)
         @netIncome = @incomeTotal - @expenseTotal
+    end
+
+    def gl_balance
+        @transaction = Transaction.all
+        @gl_accounts = GlAccount.all
+        @balances = []
+        @gl_accounts.each do |gl|
+            amount = Transaction.generateBalance(gl, Transaction.all)
+            @balances << "#{gl.number}," + ", " + ",#{gl.name}" + ': ' + ",#{amount}"
+        end
     end
 
     private 
