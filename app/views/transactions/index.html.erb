@@ -1,4 +1,4 @@
-<h1>Transactions</h1>
+<h1 clas>Transactions</h1>
 <h2>Import Transactions</h2>
 <%= form_tag import_transactions_path, multipart: true do %>
   <%= file_field_tag :file %>
@@ -15,28 +15,51 @@
     <td style="padding: 10px 10px 0px 0px"><%= button_to "Back To Home", root_path, :method => "get" %></td>
   </tr>
 </table>
-
 <br>
-<table>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Amount</th>
-      <th>Description</th>
-      <th>Notes</th>
-      <th>GL Account</th>
-      <th>Edit/Delete</th>
-    </tr>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td style="padding:50px;">Transaction Number: <%= transaction.id%></td>
-        <td style="padding:50px;">Date: <%= transaction.date %></td>
-        <td style="padding:50px;">Amount: $<%= transaction.amount %></td>
-        <td style="padding:50px">Description: <%= transaction.description %></td>
-        <td style="padding:50px;">Notes: <%= transaction.notes %></td>
-        <td style="padding:50px;"><%= render transaction.gl_account%></td>
-        <td style="padding:50px;"><%= link_to "Edit/Delete", transaction%></td>
-      </tr>
-    <% end %>
-</table>
+<div class="divTable">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">&nbsp;Date</div>
+<div class="divTableCell">&nbsp;Amount</div>
+<div class="divTableCell">&nbsp;Description</div>
+<div class="divTableCell">&nbsp;Notes</div>
+<div class="divTableCell">&nbsp;GL Account</div>
+<div class="divTableCell">&nbsp;Edit/Delete</div>
+</div>
+<% @transactions.each do |transaction| %>
+  <div class="divTableRow">
 
+    <div class="divTableCell" style="width: 85px;">&nbsp;
+      <%= transaction.date %>
+    </div>
+
+    <div class="divTableCell">&nbsp;
+      $<%= transaction.amount %>
+    </div>
+
+    <div class="divTableCell" style="text-align: left;">&nbsp;
+      <%= transaction.description %>
+    </div>
+
+    <div class="divTableCell">&nbsp;
+      <%= transaction.notes %>
+    </div>
+
+    <div class="divTableCell">&nbsp;
+      <%= form_with model: @transaction, data: { turbo_frame: transaction } do |form| %>
+        <%=turbo_frame_tag transaction do %>
+          <% gl = transaction.gl_account.number.to_s + ": " + transaction.gl_account.name %>
+          <%= link_to gl, transaction_path(transaction) %>
+        <% end %>
+      <% end %>
+    </div>
+
+     <div class="divTableCell">&nbsp;
+      <%= button_to "Edit/Delete", transaction_path(transaction), method: :get %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+<br>
+<button><a href="#top" style="text-decoration: none; color: black;">Back to top of page</a></button>
