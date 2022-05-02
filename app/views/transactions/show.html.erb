@@ -24,9 +24,12 @@
     <div>
         <%= form.label "GL Account:"%><br>
         <%= form.collection_select(:gl_account_id, GlAccount.all, :id, :name) %>
-        <p><%= form.submit "Update" %> <button><%= link_to "Cancel", transactions_path, style: "text-decoration: none; color: black;" %></button></p>
+        <div class="inline-update">
+            <p><%= form.submit "Update" %> <button><%= link_to "Cancel", transactions_path, style: "text-decoration: none; color: black;" %></button></p>
+        </div>
     </div>
     <% end %>
 <% end %>
+<br>
 <p class="inline-action"><%= button_to "Delete", @gl_account, method: :delete, form: { data: { turbo_confirm: "Are you sure?"}}%></p>
 <p class="inline-action"><%= button_to "Cancel", transactions_path, :method => "get"%></p>

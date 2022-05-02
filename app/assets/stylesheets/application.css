@@ -45,5 +45,8 @@
 	display: table-row-group;
 }
 
-.inline-action { visibility: hidden; }
-.inline-edit .inline-action { visibility: visible; }
+.inline-action { display: none; }
+.inline-edit .inline-action { display: block; }
+
+.inline-update { display: block; }
+.inline-edit .inline-update { display: none; }
