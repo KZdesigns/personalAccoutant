@@ -1,4 +1,4 @@
-<% attributes = ["id", "date", "amount", "description", "gl_account"] %>
+<% attributes = ["date", "amount", "description", "gl_account"] %>
 <%= CSV.generate do |csv| %>
     <% csv << attributes %>
     <% @transactions.each do |transaction| %>
