@@ -6,24 +6,13 @@ class Transaction < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file) do |row|
-      date, amount, description = row
+      date, amount, splat, blank, description = row
+      if(amount.to_f < 0)
+        amount = amount.to_f * -1
+      end
       transaction = Transaction.create(date: date, amount: amount, description: description, gl_account_id: 1)
     end
   end
-
-  # def self.to_csv
-  #   attributes = %w{id date amount description gl_account}
-
-  #   CSV.generate(headers: true) do |csv|
-  #     csv << attributes
-  #     all.each do |transaction|
-  #       number = GlAccount.find(transaction.gl_account_id).number.to_s
-  #       name = GlAccount.find(transaction.gl_account_id).name.to_s
-  #       gl_account = number + ": " + name
-  #       csv << [transaction.date.to_s, transaction.amount.to_s, transaction.description.to_s, gl_account]
-  #     end
-  #   end
-  # end
 
   def self.generateBalance(gl_account, transactions)
     amount = 0
