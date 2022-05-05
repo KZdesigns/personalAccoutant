@@ -17,7 +17,7 @@
         <br>
         <div>
             <%= form.label "Notes:"%><br>
-            <%= form.select :notes, options_for_select([ "", "Need to request", "Requested", "Paid" ], "") %>
+            <%= form.select :notes, options_for_select([ "", "Need to request", "Requested", "Paid" ], @transaction.notes) %>
         </div>
         <br>
         <div>
@@ -29,5 +29,13 @@
             <%= form.submit %>
         </div>
     <% end %>
-    <p><%= button_to "Delete", @gl_account, method: :delete, form: { data: { turbo_confirm: "Are you sure?"}}%></p>
-    <p><%= button_to "Cancel", transactions_path, :method => "get"%></p>
+    <br>
+    <table>
+        <tr>
+            <th style="padding: 0 5px 0 0;"><%= button_to "Delete", @gl_account, method: :delete, form: { data: { turbo_confirm: "Are you sure?"}}%></th>
+            <th style="padding: 0 5px 0 5px;"><%= button_to "Cancel", transactions_path, :method => "get"%></th>
+            <th style="padding: 0 5px 0 5px;"><%= button_to "View Transactions (Zelle)", transactions_notes_transactions_path, :method => "get"%></th>
+        </tr>
+    </table>
+    
+

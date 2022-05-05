@@ -1,0 +1,36 @@
+<h1>Transactions For Zelle</h1>
+<br>
+<table class="table-border" >
+    <tr>
+        <th class="table-border" style="padding:20px;">Date</th>
+        <th class="table-border" style="padding:20px;">Amount</th>
+        <th class="table-border" style="padding:20px;">Notes</th>
+        <th class="table-border" style="padding:20px;">Zelle Amount</th>
+        <th class="table-border" style="padding:20px;">Description</th>
+        <th class="table-border" style="padding:20px;">Edit</th>
+    </tr>
+    <% total = 0 %>
+    <% @transactions.each do |transaction|%>
+        
+        <% if transaction.notes != nil && transaction.notes != "Paid" %>
+            <tr>
+                <td class="table-border" style="padding:20px;"><%= transaction.date %></td>
+                <td class="table-border" style="padding:20px;"><%= transaction.amount %></td>
+                <td class="table-border" style="padding:20px;"><%= transaction.notes %></td>
+                <td class="table-border" style="padding:20px;"><%= transaction.amount / 2 %></td>
+                <td class="table-border" style="padding:20px;"><%= transaction.description %></td>
+                <td class="table-border" style="padding:20px;"><%= link_to "Edit/Delete", transaction%></td>
+            </tr>
+            <% total += transaction.amount / 2 %>
+        <% end %>
+    <% end %>
+</table>
+<br>
+<h2>Total: <%= total %></h2>
+
+<table>
+    <tr>
+        <th><button><a href="#top" style="text-decoration: none; color: black;">Back to top of page</a></button></th>
+        <th><%= button_to "View Transactions", transactions_path, :method => "get" %></th>
+    </tr>
+</table>

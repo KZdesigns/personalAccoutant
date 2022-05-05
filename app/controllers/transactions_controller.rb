@@ -98,6 +98,10 @@ class TransactionsController < ApplicationController
         end
     end
 
+    def transactions_notes
+        @transactions = Transaction.all
+    end
+
     private 
     def transaction_params
         params.require(:transaction).permit(:date, :amount, :description, :notes, :gl_account_id)

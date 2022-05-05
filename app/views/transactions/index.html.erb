@@ -12,6 +12,7 @@
     <td style="padding: 10px 10px 0px 0px"><%= button_to "View Income Transactions", income_transactions_path, :method => "get"%></td>
     <td style="padding: 10px 10px 0px 0px"><%= button_to "View Expense Transactions", expense_transactions_path, :method => "get"%></td>
     <td style="padding: 10px 10px 0px 0px"><button><a href="/transactions/export.csv" style="text-decoration: none; color: black;">Export CSV</a></button></td>
+    <th style="padding: 10px 10px 0px 0px;"><%= button_to "View Transactions (Zelle)", transactions_notes_transactions_path, :method => "get"%></th>
     <td style="padding: 10px 10px 0px 0px"><%= button_to "Back To Home", root_path, :method => "get" %></td>
   </tr>
 </table>

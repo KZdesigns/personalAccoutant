@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection { get :expense }
     collection { delete :delete_all }
     collection { get :income_statement }
+    collection { get :transactions_notes }
   end
 
 end

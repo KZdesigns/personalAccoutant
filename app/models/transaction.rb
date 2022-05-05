@@ -45,5 +45,5 @@ class Transaction < ApplicationRecord
 
     return totalExpense
   end
-
+  
 end
