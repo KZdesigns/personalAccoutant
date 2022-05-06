@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root "pages#home"
   get "/gl_accounts", to: "gl_accounts#index"
   get "/transactions", to: "transactions#index"
@@ -9,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :gl_accounts
   
-
   resources :transactions do 
     collection { post :import }
     collection { get :income }
