@@ -30,10 +30,10 @@
   <% @transactions.each do |transaction| %>
     <tr>
       <td class="table-border" style="padding:50px;">Transaction Number: <%= transaction.id%></td>
-      <td class="table-border" style="padding:50px;">Date: <%= transaction.date %></td>
-      <td class="table-border" style="padding:50px;">Amount: $<%= transaction.amount %></td>
-      <td class="table-border" style="padding:50px;">Description: <%= transaction.description %></td>
-      <td class="table-border" style="padding:50px;">Notes: <%= transaction.notes %></td>
+      <td class="table-border" style="padding:50px;"><%= transaction.date %></td>
+      <td class="table-border" style="padding:50px;">$<%= transaction.amount %></td>
+      <td class="table-border" style="padding:50px;"><%= transaction.description %></td>
+      <td class="table-border" style="padding:50px;"><%= transaction.notes %></td>
       <td class="table-border" style="padding:50px;"><%= render transaction.gl_account%></td>
       <td class="table-border" style="padding:50px;"><%= link_to "Edit/Delete", transaction%></td>
     </tr>
