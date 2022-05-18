@@ -12,7 +12,7 @@
     <% total = 0 %>
     <% @transactions.each do |transaction|%>
         
-        <% if transaction.notes != nil && transaction.notes != "Paid" %>
+        <% if transaction.notes == "Need to request" %>
             <tr>
                 <td class="table-border" style="padding:20px;"><%= transaction.date %></td>
                 <td class="table-border" style="padding:20px;"><%= transaction.amount %></td>
