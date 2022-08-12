@@ -1,7 +1,7 @@
 require 'csv'
 require 'gl_account'
 
-class TransactionsController < ApplicationController
+class Api::V1::TransactionsController < ApplicationController
     def index
         @transactions = Transaction.all
 
@@ -9,7 +9,44 @@ class TransactionsController < ApplicationController
             format.html
             format.csv { send_data @transactions.to_csv, filename:  "transaction-#{Date.today}"}
         end
+
+        render json: @transactions
     end
+
+    def show
+        @transaction = Transaction.find(params[:id])
+        render json: @transaction
+    end
+
+    def create
+        @transaction = Transaction.new(transaction_params)
+        if @transaction.save
+            render json: @transaction, status: :created, location: @transaction
+        else
+            render json: @transaction.errors, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        @transaction = Transaction.find(params[:id])
+
+        if @transaction.update(transaction_params)
+            render json: @transaction
+        else
+            render json: @transaction.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @transaction = Transaction.find(params[:id])
+        @transaction.destroy
+        # not needed below for api
+        # redirect_to transactions_path, status: :see_other
+    end
+
+    # def new
+    #     @transaction = Transaction.new
+    # end
 
     def export
         @transactions = Transaction.all
@@ -22,53 +59,15 @@ class TransactionsController < ApplicationController
         end
     end
 
-    def new
-        @transaction = Transaction.new
-    end
-
-    def create
-        @transaction = Transaction.new(transaction_params)
-        if @transaction.save
-            redirect_to transactions_path
-        else
-            render :new, status: :unprocessable_entity
-        end
-    end
-
-    def show
-        @transaction = Transaction.find(params[:id])
-    end
-
-    def transaction_params
-        params.require(:transaction).permit(:date, :amount, :notes, :description, :gl_account_id)
-    end
-
-    def update
-        @transaction = Transaction.find(params[:id])
-
-        if @transaction.update(transaction_params)
-            redirect_to action: "index"
-        else
-            render :edit, status: :unprocessable_entity
-        end
-    end
-
-    def destroy
-        @transaction = Transaction.find(params[:id])
-        @transaction.destroy
-    
-        redirect_to transactions_path, status: :see_other
-    end
-
     def delete_all
         @transactions = Transaction.all
         @transactions.destroy_all
-        redirect_to transactions_path, status: :see_other
+        # redirect_to transactions_path, status: :see_other
     end
 
     def import
         Transaction.import(params[:file])
-        redirect_to transactions_path, notice: "transactions imported."
+        # redirect_to transactions_path, notice: "transactions imported."
     end
 
     def income
@@ -98,10 +97,9 @@ class TransactionsController < ApplicationController
         end
     end
 
-    def transactions_notes
-        @transactions = Transaction.all
-    end
-
+    # def transactions_notes
+    #     @transactions = Transaction.all
+    # end
     private 
     def transaction_params
         params.require(:transaction).permit(:date, :amount, :description, :notes, :gl_account_id)

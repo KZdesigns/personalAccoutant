@@ -1,4 +1,4 @@
-class GlAccountsController < ApplicationController
+class API::V1::GlAccountsController < ApplicationController
     def index
         @gl_accounts = GlAccount.all
     end
