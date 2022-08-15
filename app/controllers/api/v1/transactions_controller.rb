@@ -70,6 +70,8 @@ class Api::V1::TransactionsController < ApplicationController
         @transaction = Transaction.all
         render json: @transactions
         # redirect_to transactions_path, notice: "transactions imported."
+        # TODO: Ensure the import of CSV files works correctly.
+        # https://mendywoly.medium.com/uploading-a-file-with-react-frontend-and-rails-api-backend-eb61939eedbc
     end
 
     def income
