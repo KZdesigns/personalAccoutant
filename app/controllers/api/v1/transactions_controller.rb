@@ -67,6 +67,8 @@ class Api::V1::TransactionsController < ApplicationController
 
     def import
         Transaction.import(params[:file])
+        @transaction = Transaction.all
+        render json: @transactions
         # redirect_to transactions_path, notice: "transactions imported."
     end
 
