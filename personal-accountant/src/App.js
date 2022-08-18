@@ -2,6 +2,7 @@ import "./App.css";
 import axios from "axios";
 import Transactions from "./components/Transactions";
 import { useEffect, useState } from "react";
+import Form from "./components/Form";
 
 const API_URL = "http://localhost:3000/api/v1/transactions";
 
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello!</h1>
+      <Form></Form>
       <Transactions transactions={transactions} />
     </div>
   );
