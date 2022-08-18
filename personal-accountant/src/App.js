@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <Form setFile={setFile}></Form>
-      <Transactions transactions={transactions} />
+      <Transactions transactions={transactions} setFile={setFile} />
     </div>
   );
 }

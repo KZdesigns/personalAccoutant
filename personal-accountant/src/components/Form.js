@@ -13,7 +13,7 @@ const Form = (props) => {
       method: "POST",
       body: formData,
     });
-    props.setFile(true);
+    props.setFile("import");
     userInput.current.value = null;
   };
 
