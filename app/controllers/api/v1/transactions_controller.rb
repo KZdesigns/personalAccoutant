@@ -2,16 +2,10 @@ require 'csv'
 require 'gl_account'
 
 class Api::V1::TransactionsController < ApplicationController
-    skip_before_action :verify_authenticity_token
+    skip_before_action :verify_authenticity_token #only for local dev need to learn how to pass auth token
 
     def index
         @transactions = Transaction.all
-
-        respond_to do |format|
-            format.html
-            format.csv { send_data @transactions.to_csv, filename:  "transaction-#{Date.today}"}
-        end
-
         render json: @transactions
     end
 

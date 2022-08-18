@@ -12,6 +12,7 @@ const getAPIData = () => {
 
 function App() {
   const [transactions, setTransactions] = useState([]);
+  const [csv, setFile] = useState("");
 
   useEffect(() => {
     let mounted = true;
@@ -23,11 +24,11 @@ function App() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [csv]);
 
   return (
     <div className="App">
-      <Form></Form>
+      <Form setFile={setFile}></Form>
       <Transactions transactions={transactions} />
     </div>
   );
