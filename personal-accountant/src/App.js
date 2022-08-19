@@ -1,24 +1,35 @@
 import "./App.css";
-import axios from "axios";
 import Transactions from "./components/Transactions";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 
-const API_URL = "http://localhost:3000/api/v1/transactions";
+const getTransactionData = async () => {
+  const response = await fetch("http://localhost:3000/api/v1/transactions");
+  const data = await response.json();
+  return data;
+};
 
-const getAPIData = () => {
-  return axios.get(API_URL).then((response) => response.data);
+const getGl_accounts = async () => {
+  const response = await fetch("http://localhost:3000/api/v1/gl_accounts");
+  const data = await response.json();
+  return data;
 };
 
 function App() {
   const [transactions, setTransactions] = useState([]);
   const [csv, setFile] = useState("");
+  const [gl_accounts, setGl_acounts] = useState([]);
 
   useEffect(() => {
     let mounted = true;
-    getAPIData().then((items) => {
+    getTransactionData().then((items) => {
       if (mounted) {
         setTransactions(items);
+      }
+    });
+    getGl_accounts().then((items) => {
+      if (mounted) {
+        setGl_acounts(items);
       }
     });
     return () => {
@@ -29,7 +40,11 @@ function App() {
   return (
     <div className="App">
       <Form setFile={setFile}></Form>
-      <Transactions transactions={transactions} setFile={setFile} />
+      <Transactions
+        transactions={transactions}
+        gl_accounts={gl_accounts}
+        setFile={setFile}
+      />
     </div>
   );
 }

@@ -1,47 +1,27 @@
 import React from "react";
+import TxnItem from "./TxnItem";
+import classes from "./Transaction.module.css";
 
 const Transactions = (props) => {
-  const onDeleteHandler = async (event) => {
-    event.preventDefault();
-    await fetch(
-      `http://localhost:3000/api/v1/transactions/${event.target.value}`,
-      {
-        method: "DELETE",
-      }
-    );
-    props.setFile("delete");
-  };
-
-  const onUpdateHandler = async (even) => {
-    // TODO: write function for updating transactions
-    // PUT    /api/v1/transactions/:id(.:format)
-  };
-
   return (
-    <div>
-      <h1>This Transaction are from the API</h1>
-      {props.transactions.map((txn) => {
-        return (
-          <div key={txn.id}>
-            <form>
-              <input type="text" defaultValue={txn.date}></input>
-              <input type="text" defaultValue={txn.amount}></input>
-              <input type="text" defaultValue={txn.description}></input>
-              <select>
-                <option value="none" defaultChecked></option>
-                <option value="need to request">need to request</option>
-                <option value="need to request">requested</option>
-                <option value="need to request">paid</option>
-              </select>
-              <button onClick={onDeleteHandler} value={txn.id}>
-                Delete
-              </button>
-              <button onClick={onUpdateHandler}>Update Txn</button>
-            </form>
-          </div>
-        );
-      })}
-    </div>
+    <React.Fragment>
+      <h1>Transactions List</h1>
+      <div className={classes.txnList}>
+        {props.transactions.map((txn) => (
+          <TxnItem
+            key={txn.id}
+            id={txn.id}
+            date={txn.date}
+            amount={txn.amount}
+            description={txn.description}
+            notes={txn.notes}
+            gl_account_id={txn.gl_account_id}
+            setFile={props.setFile}
+            gl_accounts={props.gl_accounts}
+          />
+        ))}
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -1,6 +1,10 @@
-class API::V1::GlAccountsController < ApplicationController
+class Api::V1::GlAccountsController < ApplicationController
+    skip_before_action :verify_authenticity_token #only for local dev need to learn how to pass auth token
+    respond_to? :json
+
     def index
         @gl_accounts = GlAccount.all
+        render json: @gl_accounts
     end
 
     def new

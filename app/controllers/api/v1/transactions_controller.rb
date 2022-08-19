@@ -3,6 +3,7 @@ require 'gl_account'
 
 class Api::V1::TransactionsController < ApplicationController
     skip_before_action :verify_authenticity_token #only for local dev need to learn how to pass auth token
+    respond_to? :json
 
     def index
         @transactions = Transaction.all
@@ -24,13 +25,9 @@ class Api::V1::TransactionsController < ApplicationController
     end
 
     def update
-        @transaction = Transaction.find(params[:id])
-
-        if @transaction.update(transaction_params)
-            render json: @transaction
-        else
-            render json: @transaction.errors, status: :unprocessable_entity
-        end
+        transaction = Transaction.find(params[:id])
+        transaction.update(transaction_params)
+        render json: transaction
     end
 
     def destroy
@@ -102,6 +99,6 @@ class Api::V1::TransactionsController < ApplicationController
     # end
     private 
     def transaction_params
-        params.require(:transaction).permit(:date, :amount, :description, :notes, :gl_account_id)
+        params.require(:transaction).permit(:id, :date, :amount, :description, :notes, :gl_account_id)
     end
 end

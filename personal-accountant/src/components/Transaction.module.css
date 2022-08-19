@@ -1,0 +1,5 @@
+.txnList {
+    margin-bottom: 20rem;
+    height: 45rem;
+    overflow-y: scroll;
+}
