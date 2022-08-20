@@ -45,11 +45,9 @@ class Api::V1::TransactionsController < ApplicationController
         @transactions = Transaction.all
 
         respond_to do |format|
-          format.csv do
-            response.headers['Content-Type'] = 'text/csv'
-            response.headers['Content-Disposition'] = "attachment; filename=transaction-#{Date.today}.csv"
+            format.html
+            format.csv { send_file @transactions.to_csv, filename: "users-#{Date.today}.csv" }
           end
-        end
     end
 
     def delete_all

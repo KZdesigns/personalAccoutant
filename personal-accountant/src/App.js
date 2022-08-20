@@ -3,6 +3,7 @@ import Transactions from "./components/Transactions";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
 import CsvDownload from "react-json-to-csv";
+import Export from "./components/Export";
 
 const getTransactionData = async () => {
   const response = await fetch("http://localhost:3000/api/v1/transactions");
@@ -47,6 +48,7 @@ function App() {
         gl_accounts={gl_accounts}
         setFile={setFile}
       />
+      <Export></Export>
     </div>
   );
 }
