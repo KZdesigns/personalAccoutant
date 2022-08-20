@@ -2,7 +2,6 @@ import "./App.css";
 import Transactions from "./components/Transactions";
 import { useEffect, useState } from "react";
 import Form from "./components/Form";
-import CsvDownload from "react-json-to-csv";
 
 const getTransactionData = async () => {
   const response = await fetch("http://localhost:3000/api/v1/transactions");
@@ -15,6 +14,8 @@ const getGl_accounts = async () => {
   const data = await response.json();
   return data;
 };
+
+const EXPORT_URL = "http://localhost:3000/api/v1/transactions/export.csv";
 
 function App() {
   const [transactions, setTransactions] = useState([]);
@@ -40,8 +41,11 @@ function App() {
 
   return (
     <div className="App">
-      <Form setFile={setFile}></Form>
-      <CsvDownload data={transactions} />
+      <h1>Import Spreadsheet:</h1>
+      <div className="nav">
+        <Form setFile={setFile}></Form>
+        <a href={EXPORT_URL}>export</a>
+      </div>
       <Transactions
         transactions={transactions}
         gl_accounts={gl_accounts}

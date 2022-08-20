@@ -41,16 +41,21 @@ class Api::V1::TransactionsController < ApplicationController
     #     @transaction = Transaction.new
     # end
 
-    # def export
-    #     @transactions = Transaction.all
-
-    #       respond_to do |format|
-    #         format.csv do
-    #           response.headers['Content-Type'] = 'text/csv'
-    #           response.headers['Content-Disposition'] = "attachment; filename=transaction-#{Date.today}.csv"
-    #         end
-    #       end
-    # end
+    def export
+        @transactions = Transaction.all
+          respond_to do |format|
+            format.csv do
+              response.headers['Content-Type'] = 'text/csv'
+              response.headers['Content-Disposition'] = "attachment; filename=transaction-#{Date.today}.csv"
+            end
+          end
+        csv_data = create_csv(@transactions)
+        send_data(
+            csv_data,
+            filename: "transaction_#{Date.today}.csv",
+            type: :csv
+        )
+    end
 
     def delete_all
         @transactions = Transaction.all
@@ -101,4 +106,19 @@ class Api::V1::TransactionsController < ApplicationController
     def transaction_params
         params.require(:transaction).permit(:id, :date, :amount, :description, :notes, :gl_account_id)
     end
+
+    def create_csv(transactions)
+        attributes = ["date", "amount", "description", "gl_account"] 
+        csv_data = CSV.generate do |csv| 
+            csv << attributes 
+            @transactions.each do |transaction| 
+                number = GlAccount.find(transaction.gl_account_id).number.to_s 
+                name = GlAccount.find(transaction.gl_account_id).name.to_s 
+                gl_account = number + ": " + name 
+                csv << ([transaction.date.to_s, transaction.amount.to_s, transaction.description.to_s, gl_account]) 
+            end
+        end
+        return csv_data
+    end
+
 end

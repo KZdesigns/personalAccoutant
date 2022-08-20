@@ -23,7 +23,6 @@ const Form = (props) => {
 
   return (
     <div>
-      <h1>Import Spreadsheet:</h1>
       <form onSubmit={handleUpload}>
         <input
           type="file"
