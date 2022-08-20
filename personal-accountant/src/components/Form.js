@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { getTransactionData } from "../App";
 
 const Form = (props) => {
   const [csv, setFile] = useState();
@@ -13,7 +14,8 @@ const Form = (props) => {
       method: "POST",
       body: formData,
     });
-    props.setFile("import");
+    const response = await getTransactionData();
+    props.setTransactions(response);
     userInput.current.value = null;
   };
 

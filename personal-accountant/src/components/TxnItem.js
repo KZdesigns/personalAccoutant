@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classes from "./TxnItem.module.css";
+import { getTransactionData } from "../App";
 
 const TxnItem = (props) => {
   const [txn, setTxn] = useState({
@@ -46,7 +47,8 @@ const TxnItem = (props) => {
         method: "DELETE",
       }
     );
-    props.setFile("delete");
+    const response = await getTransactionData();
+    props.setTransactions(response);
   };
 
   const onUpdateHandler = async (event) => {
@@ -61,7 +63,8 @@ const TxnItem = (props) => {
         },
       }
     );
-    props.setFile("update");
+    const response = await getTransactionData();
+    props.setTransactions(response);
   };
 
   return (

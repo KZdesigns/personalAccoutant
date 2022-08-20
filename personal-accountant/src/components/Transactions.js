@@ -18,6 +18,7 @@ const Transactions = (props) => {
             gl_account_id={txn.gl_account_id}
             setFile={props.setFile}
             gl_accounts={props.gl_accounts}
+            setTransactions={props.setTransactions}
           />
         ))}
       </div>

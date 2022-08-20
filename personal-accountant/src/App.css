@@ -39,18 +39,11 @@
 }
 
 a {
-  padding: .1rem .3rem;
-  background-color: rgb(239, 238, 238);
   color: black;
   font-size: small;
-  border: thin solid rgb(117, 117, 117);
-  border-radius: 2px;
   text-decoration: none;
 }
 
-a:hover {
-  background-color: rgb(220, 220, 220);
-}
 
 .nav {
   display: flex;
