@@ -43,7 +43,7 @@ class Api::V1::TransactionsController < ApplicationController
 
     def export
         @transactions = Transaction.all
-    
+
         respond_to do |format|
           format.csv do
             response.headers['Content-Type'] = 'text/csv'
