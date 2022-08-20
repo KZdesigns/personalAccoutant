@@ -41,14 +41,16 @@ class Api::V1::TransactionsController < ApplicationController
     #     @transaction = Transaction.new
     # end
 
-    def export
-        @transactions = Transaction.all
+    # def export
+    #     @transactions = Transaction.all
 
-        respond_to do |format|
-            format.html
-            format.csv { send_file @transactions.to_csv, filename: "users-#{Date.today}.csv" }
-          end
-    end
+    #       respond_to do |format|
+    #         format.csv do
+    #           response.headers['Content-Type'] = 'text/csv'
+    #           response.headers['Content-Disposition'] = "attachment; filename=transaction-#{Date.today}.csv"
+    #         end
+    #       end
+    # end
 
     def delete_all
         @transactions = Transaction.all
