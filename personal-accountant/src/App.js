@@ -44,7 +44,7 @@ function App() {
       <div className="nav">
         <Form setTransactions={setTransactions}></Form>
         <button>
-          <a href={EXPORT_URL}>export</a>
+          <a href={EXPORT_URL}>Export</a>
         </button>
       </div>
 
