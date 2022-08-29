@@ -17,7 +17,9 @@ const Transactions = (props) => {
   return (
     <React.Fragment>
       <h1>Transactions List</h1>
-      <button onClick={onFilterHandler}>Filter Transactions</button>
+      <button onClick={onFilterHandler} style={{ marginBottom: "2rem" }}>
+        Filter Transactions
+      </button>
       <div className={classes.txnList}>
         {showFilter &&
           props.transactions.map((txn) => (
